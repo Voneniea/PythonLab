@@ -14,10 +14,19 @@ def swap_min_max(arr):
     arr[min_index], arr[max_index] = arr[max_index], arr[min_index]
     return arr
 
+#Задача 29
+def is_max_in_interval(arr, a, b):
+    if not (0 <= a <= b < len(arr)):
+        raise ValueError("Некорректный интервал")
+
+    max_val = max(arr)
+    return any(arr[i] == max_val for i in range(a, b + 1))
+
 
 arr = [3, 1, 4, 1, 5, 9, 2]
 print(f"Массив: {arr}")
-choice = input("Выберите функцию: 1 - Проверить глобальный минимум, 2 - Поменять местами минимум и максимум: ")
+choice = input(
+    "Выберите функцию: 1 - Проверить глобальный минимум, 2 - Поменять местами минимум и максимум, 3 - Проверить наличие максимального элемента в интервале: ")
 
 if choice == "1":
     index = int(input("Введите индекс: "))
@@ -28,5 +37,12 @@ if choice == "1":
 elif choice == "2":
     arr = swap_min_max(arr)
     print(f"Обновленный массив: {arr}")
+elif choice == "3":
+    a = int(input("Введите начало интервала: "))
+    b = int(input("Введите конец интервала: "))
+    if is_max_in_interval(arr, a, b):
+        print(f"Максимальный элемент массива присутствует в интервале {a}..{b}.")
+    else:
+        print(f"Максимального элемента массива нет в интервале {a}..{b}.")
 else:
     print("Некорректный выбор.")

@@ -27,6 +27,13 @@ def average_absolute_value(arr):
     return sum(abs(x) for x in arr) / len(arr)
 
 
+#Задача 53
+def filter_elements_between_avg_and_max(arr):
+    avg = sum(arr) / len(arr)
+    max_val = max(arr)
+    return [x for x in arr if avg < x < max_val]
+
+
 arr = [3, 1, 4, 1, 5, 9, 2]
 print(f"Массив: {arr}")
 choice = input(
@@ -35,6 +42,7 @@ choice = input(
     "2 - Поменять местами минимум и максимум\n"
     "3 - Проверить наличие максимального элемента в интервале\n"
     "4 - Найти среднее арифметическое модулей элементов\n"
+    "5 - Построить новый список с элементами, большими, чем среднее арифметическое, но меньшими, чем максимальное значение\n"
 )
 
 if choice == "1":
@@ -56,5 +64,8 @@ elif choice == "3":
 elif choice == "4":
     avg_abs = average_absolute_value(arr)
     print(f"Среднее арифметическое модулей элементов массива: {avg_abs}")
+elif choice == "5":
+    new_arr = filter_elements_between_avg_and_max(arr)
+    print(f"Новый список: {new_arr}")
 else:
     print("Некорректный выбор.")

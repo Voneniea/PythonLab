@@ -10,10 +10,8 @@ def validate_zip_code(zip_code):
     return zip_code
 
 try:
-    zip_code = "12345-6789"
+    zip_code = "1234"
     if is_zip_code(zip_code):
         print(f"'{zip_code}' является почтовым индексом.")
-    validated_zip = validate_zip_code(zip_code)
-    print(f"Валидный почтовый индекс: {validated_zip}")
 except ValueError as e:
     print(e)

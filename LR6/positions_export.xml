@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<positions><record><id>1</id><title>Менеджер по продажам</title><salary>50000.0</salary><requirements>Опыт работы от 1 года</requirements></record><record><id>2</id><title>Программист Python</title><salary>120000.0</salary><requirements>Знание Django, Flask</requirements></record><record><id>3</id><title>Бухгалтер</title><salary>70000.0</salary><requirements>Высшее экономическое образование</requirements></record></positions>

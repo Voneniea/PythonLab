@@ -1,0 +1,6 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <p class="success">{{ message }}</p>
+    <a href="{% url 'agency:deal_list' %}">Вернуться к списку сделок</a>
+{% endblock %}

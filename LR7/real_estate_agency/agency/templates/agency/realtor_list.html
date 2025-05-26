@@ -1,0 +1,35 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Список риелторов</h2>
+    {% if realtors %}
+        <table>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Стаж (годы)</th>
+                <th>Действия</th>
+            </tr>
+            {% for realtor in realtors %}
+                <tr>
+                    <td>{{ realtor.last_name }}</td>
+                    <td>{{ realtor.first_name }}</td>
+                    <td>{{ realtor.patronymic }}</td>
+                    <td>{{ realtor.email }}</td>
+                    <td>{{ realtor.phone }}</td>
+                    <td>{{ realtor.experience_years }}</td>
+                    <td>
+                        <a href="{% url 'agency:realtor_detail' realtor.pk %}">Подробно</a> |
+                        <a href="{% url 'agency:realtor_edit' realtor.pk %}">Редактировать</a> |
+                        <a href="{% url 'agency:realtor_delete' realtor.pk %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Риелторов пока нет.</p>
+    {% endif %}
+{% endblock %}

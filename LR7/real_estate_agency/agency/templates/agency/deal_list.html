@@ -1,0 +1,41 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Список сделок</h2>
+
+    <div style="margin-bottom: 15px;">
+        <a href="{% url 'agency:export_deals_excel' %}" class="btn">Экспорт в Excel</a>
+        <a href="{% url 'agency:export_deals_word' %}" class="btn">Экспорт в Word</a>
+        <a href="{% url 'agency:export_deals_pdf' %}" class="btn">Экспорт в PDF</a>
+    </div>
+
+    {% if deals %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Покупатель</th>
+                <th>Риелтор</th>
+                <th>Адрес недвижимости</th>
+                <th>Цена</th>
+                <th>Дата сделки</th>
+                <th>Действия</th>
+            </tr>
+            {% for deal in deals %}
+                <tr>
+                    <td>{{ deal.id }}</td>
+                    <td>{{ deal.buyer }}</td>
+                    <td>{{ deal.realtor }}</td>
+                    <td>{{ deal.property_address }}</td>
+                    <td>{{ deal.price }}</td>
+                    <td>{{ deal.deal_date }}</td>
+                    <td>
+                        <a href="{% url 'agency:deal_detail' deal.pk %}">Подробно</a> |
+                        <a href="{% url 'agency:deal_edit' deal.pk %}">Редактировать</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Сделок пока нет.</p>
+    {% endif %}
+{% endblock %}

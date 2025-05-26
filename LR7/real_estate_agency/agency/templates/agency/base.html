@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Риелторское агентство</title>
+
+    <link rel="stylesheet" href="{% static 'agency/style.css' %}">
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .error { color: red; }
+        .success { color: green; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+
+    </style>
+</head>
+<body>
+    <h1>Риелторское агентство</h1>
+    <nav>
+        <a href="{% url 'agency:deal_list' %}">Сделки</a> |
+        <a href="{% url 'agency:buyer_list' %}">Покупатели</a> |
+        <a href="{% url 'agency:realtor_list' %}">Риелторы</a> |
+        <a href="{% url 'agency:deal_create' %}">Добавить сделку</a> |
+        <a href="{% url 'agency:buyer_create' %}">Добавить покупателя</a> |
+        <a href="{% url 'agency:realtor_create' %}">Добавить риелтора</a> |
+        {% if user.is_authenticated %}
+            <span>Привет, {{ user.profile.first_name }} ({{ user.profile.role }})</span> |
+            <a href="{% url 'agency:logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'agency:login' %}">Войти</a> |
+            <a href="{% url 'agency:register' %}">Регистрация</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

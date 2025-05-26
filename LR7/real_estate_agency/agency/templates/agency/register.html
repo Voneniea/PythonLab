@@ -1,0 +1,61 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Регистрация</h2>
+    <form method="post" id="registerForm">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('input', function(e) {
+            const field = e.target;
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.style.display = 'none';
+
+            const existingError = field.nextElementSibling;
+            if (existingError && existingError.className === 'error') {
+                existingError.remove();
+            }
+
+            if (field.name === 'first_name' || field.name === 'last_name' || field.name === 'patronymic') {
+                const regex = /^[А-Я][а-я]*$/;
+                if (!regex.test(field.value)) {
+                    errorDiv.textContent = 'Поле должно начинаться с прописной буквы и содержать только кириллицу.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+
+            if (field.name === 'email') {
+                const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!regex.test(field.value)) {
+                    errorDiv.textContent = 'Некорректный формат email.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+
+            if (field.name === 'password') {
+                const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if (!regex.test(field.value)) {
+                    errorDiv.textContent = 'Пароль должен быть не менее 8 символов, содержать прописные и строчные буквы, цифры и специальные символы.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+
+            if (field.name === 'password_confirm') {
+                const password = document.querySelector('input[name="password"]').value;
+                if (field.value !== password) {
+                    errorDiv.textContent = 'Пароли не совпадают.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+        });
+    </script>
+{% endblock %}

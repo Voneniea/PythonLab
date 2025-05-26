@@ -1,0 +1,11 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Удаление покупателя</h2>
+    <p>Вы уверены, что хотите удалить покупателя "{{ buyer }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'agency:buyer_list' %}">Отмена</a>
+    </form>
+{% endblock %}

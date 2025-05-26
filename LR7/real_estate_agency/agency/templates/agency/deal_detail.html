@@ -1,0 +1,14 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Информация о сделке</h2>
+    <p><strong>ID:</strong> {{ deal.id }}</p>
+    <p><strong>Покупатель:</strong> {{ deal.buyer }}</p>
+    <p><strong>Риелтор:</strong> {{ deal.realtor }}</p>
+    <p><strong>Адрес недвижимости:</strong> {{ deal.property_address }}</p>
+    <p><strong>Цена:</strong> {{ deal.price }}</p>
+    <p><strong>Дата сделки:</strong> {{ deal.deal_date }}</p>
+    <p><strong>Создано:</strong> {{ deal.created_at }}</p>
+    <p><strong>Создал:</strong> {{ deal.created_by.username|default:"Неизвестно" }}</p>
+    <a href="{% url 'agency:deal_list' %}">Назад к списку</a>
+{% endblock %}

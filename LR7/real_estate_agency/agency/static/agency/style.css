@@ -1,0 +1,96 @@
+body {
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    color: #61dafb;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #2c2c3e;
+    color: #ffffff;
+}
+
+tr:nth-child(even) {
+    background-color: #2a2a3a;
+}
+
+tr:hover {
+    background-color: #3a3a4a;
+}
+
+a {
+    color: #4ea9ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button, input[type="submit"] {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+form {
+    background-color: #2c2c3e;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.success {
+    color: #7fff7f;
+    font-weight: bold;
+}
+th {
+    background-color: #f2f2f2; /* твой текущий фон */
+    color: black;              /* чёрный цвет текста */
+    font-weight: bold;         /* чтобы выделить заголовки */
+}

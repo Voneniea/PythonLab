@@ -1,0 +1,44 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>{% if deal %}Редактировать сделку #{{ deal.id }}{% else %}Добавить новую сделку{% endif %}</h2>
+    <form method="post" id="dealForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+        <a href="{% url 'agency:deal_list' %}">Отмена</a>
+    </form>
+
+    <script>
+        document.getElementById('dealForm').addEventListener('input', function(e) {
+            const field = e.target;
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.style.display = 'none';
+
+            // Удаляем предыдущие сообщения об ошибке
+            const existingError = field.nextElementSibling;
+            if (existingError && existingError.className === 'error') {
+                existingError.remove();
+            }
+
+            // Валидация адреса
+            if (field.name === 'property_address') {
+                if (field.value.length < 5) {
+                    errorDiv.textContent = 'Адрес должен содержать не менее 5 символов.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+
+            // Валидация цены
+            if (field.name === 'price') {
+                if (field.value <= 0) {
+                    errorDiv.textContent = 'Цена должна быть больше 0.';
+                    errorDiv.style.display = 'block';
+                    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+                }
+            }
+        });
+    </script>
+{% endblock %}

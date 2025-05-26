@@ -1,0 +1,33 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Список покупателей</h2>
+    {% if buyers %}
+        <table>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Действия</th>
+            </tr>
+            {% for buyer in buyers %}
+                <tr>
+                    <td>{{ buyer.last_name }}</td>
+                    <td>{{ buyer.first_name }}</td>
+                    <td>{{ buyer.patronymic }}</td>
+                    <td>{{ buyer.email }}</td>
+                    <td>{{ buyer.phone }}</td>
+                    <td>
+                        <a href="{% url 'agency:buyer_detail' buyer.pk %}">Подробно</a> |
+                        <a href="{% url 'agency:buyer_edit' buyer.pk %}">Редактировать</a> |
+                        <a href="{% url 'agency:buyer_delete' buyer.pk %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Покупателей пока нет.</p>
+    {% endif %}
+{% endblock %}

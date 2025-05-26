@@ -1,0 +1,13 @@
+{% extends 'agency/base.html' %}
+
+{% block content %}
+    <h2>Информация о покупателе</h2>
+    <p><strong>Фамилия:</strong> {{ buyer.last_name }}</p>
+    <p><strong>Имя:</strong> {{ buyer.first_name }}</p>
+    <p><strong>Отчество:</strong> {{ buyer.patronymic }}</p>
+    <p><strong>Email:</strong> {{ buyer.email }}</p>
+    <p><strong>Телефон:</strong> {{ buyer.phone }}</p>
+    <p><strong>Создано:</strong> {{ buyer.created_at }}</p>
+    <p><strong>Создал:</strong> {{ buyer.created_by.username|default:"Неизвестно" }}</p>
+    <a href="{% url 'agency:buyer_list' %}">Назад к списку</a>
+{% endblock %}
